@@ -1,11 +1,20 @@
+import Image from 'next/image';
 import { Heart } from '../../assets/svg/Heart';
 import UserIcon from '../../assets/svg/UserIcon';
 
-const Cart = ({ titulo, descripcion, link, votos, image }) => {
+interface ICart {
+  titulo: string;
+  descripcion: string;
+  link: string;
+  votos: number;
+  image: string;
+}
+
+const Cart = ({ titulo, descripcion, link, votos, image }: ICart) => {
   return (
     <div className="bg-white max-w-[500px] rounded-3xl relative flex flex-col drop-shadow-xl">
       <div>
-        <img src={image} className="w-full rounded-t-3xl" />
+        <Image src={image} className="w-full rounded-t-3xl" alt="cart image" />
         <Heart className="absolute top-[200px] right-4" isActive={true} />
       </div>
       <div className="p-5">

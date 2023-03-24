@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
 interface IPresentation {
-  name?: string;
+  name: string;
 }
 
 export const Presentation: FC<IPresentation> = ({ name }) => {
   //name es category id
-  const separador = name?.split(' ');
+  const separador = name?.split(' '); //['Marcas','y', 'Eventos]
   return (
     <div>
       <div className="min-h-[320px] flex justify-center flex-col bg-[url('/mock-category.png')] bg-cover bg-center app-banner -mt-4 gap-5 md:pl-[10rem]">
