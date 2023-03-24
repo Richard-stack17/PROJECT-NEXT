@@ -54,7 +54,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
               />
             </SwiperSlide>
           ))}
-          <div className="hidden sm:flex items-center absolute top-0 bottom-0 -right-20 left-auto cursor-pointer items-stretch justify-items-stretch">
+          <div className="hidden sm:flex absolute top-0 bottom-0 -right-20 left-auto cursor-pointer items-stretch justify-items-stretch">
             <SlideNextButton />
           </div>
         </Swiper>

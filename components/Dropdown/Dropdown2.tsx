@@ -28,7 +28,7 @@ const Dropdown2 = () => {
     <div className="relative">
       <button
         onClick={handleClick}
-        className="bg-white border-cyan-700 border-slate-400 border-2 rounded-full shadow-lg p-4 hover:bg-gray-200 transition-colors mt-1"
+        className="bg-white border-slate-400 border-2 rounded-full shadow-lg p-4 hover:bg-gray-200 transition-colors mt-1"
       >
         <DownIcon />
       </button>

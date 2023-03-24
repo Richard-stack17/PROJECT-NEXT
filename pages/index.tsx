@@ -3,7 +3,6 @@ import Logo from '../components/assets/logo/Logo';
 import { Layout } from '../components/layout/Layout';
 import { Search } from '../components/Presentation/Search';
 import { EventSlider } from '../components/sliders/EventSlider/EventSlider';
-import SliderImg from '../components/sliders/SliderImg/SliderImg';
 import { eventsMock } from '../lib/data/events.mock';
 import { useCategories } from '../lib/services/categories.services';
 import { NextPageWithLayout } from './page';
@@ -61,7 +60,6 @@ const Home: NextPageWithLayout = () => {
           events={eventsMock}
         />
       </div>
-      <SliderImg />
     </div>
   );
 };
