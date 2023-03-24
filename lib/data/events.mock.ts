@@ -1,4 +1,11 @@
-export const eventsMock = [
+export interface IEventMock {
+  title: string;
+  short_description: string;
+  votes: number;
+  url: string;
+  image: string;
+}
+export const eventsMock: IEventMock[] = [
   {
     title: 'Concierto de Lady Gaga',
     short_description:

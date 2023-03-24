@@ -13,7 +13,25 @@
     @apply m-auto container p-4 lg:max-w-6xl;
   }
   .app-title-1 {
-    @apply font-black text-5xl leading-[56px] font-Roboto;
+    @apply font-black text-[48px] leading-[56px] font-Roboto;
+  }
+  .subtitle-1 {
+    @apply font-medium text-[16px] leading-[19px] font-Roboto;
+  }
+  .title-2 {
+    @apply font-medium text-[24px] leading-[28px] font-Roboto;
+  }
+  .subtitle-2 {
+    @apply font-[400] text-[16px] leading-[19px] font-Roboto;
+  }
+  .title-3 {
+    @apply font-[600] text-[20px] leading-[23px] font-Roboto;
+  }
+  .texto-1 {
+    @apply font-[400] text-[15px] leading-[18px] font-Roboto;
+  }
+  .texto-2 {
+    @apply font-medium text-[14px] leading-[16px] font-Roboto;
   }
 
   .app-banner {
