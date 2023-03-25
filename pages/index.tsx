@@ -43,7 +43,7 @@ const Home: NextPageWithLayout = () => {
         </div>
       </div>
       {/* CONTENIDO */}
-      <div className="bg-white h-[100%] p-5 flex flex-col gap-10">
+      <div className="h-[100%] p-5 flex flex-col gap-10">
         <EventSlider
           title="Populares en Querétaro"
           subtitle="Lo que las personas piden más"

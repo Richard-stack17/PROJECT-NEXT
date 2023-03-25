@@ -1,47 +1,35 @@
-import Link from 'next/link';
 import { useState } from 'react';
+import Configuration from '../assets/svg/User/Configuration';
 import DownIcon from '../assets/svg/User/DownIcon';
+import LogOut from '../assets/svg/User/LogOut';
 
 const Dropdown2 = () => {
-  const options = [
-    {
-      id: 0,
-      title: 'Configuración',
-      url: '/category/Marcas y tiendas',
-    },
-    {
-      id: 1,
-      title: 'Cerrar sesión',
-      url: '/category/Artistas y conciertos',
-    },
-    {
-      id: 2,
-      title: 'Ayuda y soporte',
-      url: '/category/Torneos y eventos',
-    },
-  ];
   const [open, setOpen] = useState(true);
   function handleClick() {
     setOpen(!open);
   }
   return (
-    <div className="relative">
+    <div className="relative w-8">
       <button
         onClick={handleClick}
-        className="bg-white border-slate-400 border-2 rounded-full shadow-lg p-4 hover:bg-gray-200 transition-colors mt-1"
+        className="bg-none rounded-full shadow-lg p-3 mt-1"
       >
         <DownIcon />
       </button>
       {open && (
-        <ul className="bg-slate-200 relative rounded-md shadow-mlg mt-4 right-[0] overflow-hidden z-50 mr-20">
-          {options.map((option) => (
-            <li
-              className="px-4 py-2 hover:bg-gray-200 transition-colors cursor-pointer flex gap-4"
-              key={option.id}
-            >
-              <Link href={option.url}>{option.title}</Link>
-            </li>
-          ))}
+        <ul className="bg-white absolute rounded-md shadow-mlg mt-4 right-2 overflow-hidden  z-50 p-2 rounded-lg">
+          <li className="px-4 py-2 cursor-pointer flex gap-4">
+            <Configuration />
+            <a className="text-black">Configuracion</a>
+          </li>
+          <li className="px-4 py-2 cursor-pointer flex gap-4">
+            <LogOut />
+            <a className="text-black">Cerrar sesión</a>
+          </li>
+          <div className="bg-app-gray w-50 h-[2px]"></div>
+          <li className="px-4 py-2 cursor-pointer flex gap-4">
+            <a className="text-app-grayDark">Ayuda y soporte</a>
+          </li>
         </ul>
       )}
     </div>
