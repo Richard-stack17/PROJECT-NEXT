@@ -11,19 +11,19 @@ const Header = () => {
         <IconLogo />
       </div>
       <div className="flex gap-20">
-        <div className="flex gap-4 items-center">
+        <div className="hidden min-[1024px]:flex gap-4 items-center">
           <div>
             <Plus />
           </div>
           <div className="text-app-blue">Crear publicación</div>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="hidden min-[1024px]:flex gap-4 items-center">
           <div>
             <HeartHome />
           </div>
           <div>Mis votos</div>
         </div>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center justify-center max-w-[234px]">
           <div className="bg-black rounded-full px-[5px] py-[5px] border-[2px]">
             <UserIcon />
           </div>

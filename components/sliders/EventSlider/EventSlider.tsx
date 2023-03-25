@@ -15,7 +15,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
         <h2 className="title-2 pb-2">{title}</h2>
         <p className="subtitle-2 pb-2">{subtitle}</p>
       </div>
-      <div className="relative">
+      <div className="relative  p-2">
         <Swiper
           style={{ position: 'unset' }}
           slidesPerView={'auto'}
@@ -43,17 +43,19 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
             },
           }}
         >
-          {events?.map((event, index) => (
-            <SwiperSlide key={index}>
-              <Cart
-                titulo={event.title}
-                descripcion={event['short_description']}
-                image={event.image}
-                votos={event.votes}
-                link={event.url}
-              />
-            </SwiperSlide>
-          ))}
+          <div className="flex items-stretch justify-items-stretch">
+            {events?.map((event, index) => (
+              <SwiperSlide key={index} className="p-2">
+                <Cart
+                  titulo={event.title}
+                  descripcion={event['short_description']}
+                  image={event.image}
+                  votos={event.votes}
+                  link={event.url}
+                />
+              </SwiperSlide>
+            ))}
+          </div>
           <div className="hidden sm:flex absolute top-0 bottom-0 -right-20 left-auto cursor-pointer items-stretch justify-items-stretch">
             <SlideNextButton />
           </div>
