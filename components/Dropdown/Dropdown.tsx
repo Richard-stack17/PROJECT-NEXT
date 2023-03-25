@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
+import TripleDown from '../assets/svg/TripleDown';
 
 const Dropdown = () => {
   type Places = {
@@ -24,7 +25,7 @@ const Dropdown = () => {
       url: '/category/Torneos y eventos',
     },
   ];
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   function handleClick() {
     setOpen(!open);
   }
@@ -32,15 +33,14 @@ const Dropdown = () => {
     <div className="absolute">
       <button
         onClick={handleClick}
-        className="bg-white border-slate-400 border-2 rounded-full shadow-lg p-4 hover:bg-gray-200 transition-colors mt-1"
-      ></button>
+        className="bg-white border-app-gray border-2 rounded-full shadow-lg p-4 hover:bg-gray-200 transition-colors"
+      >
+        <TripleDown />
+      </button>
       {open && (
         <ul className="bg-slate-200 relative rounded-md shadow-mlg mt-4 right-0 overflow-hidden left-10 z-50">
           {options.map((option) => (
-            <li
-              className="px-4 py-2 hover:bg-gray-200 transition-colors cursor-pointer flex gap-4"
-              key={option.id}
-            >
+            <li className="px-4 py-2 cursor-pointer flex gap-4" key={option.id}>
               <Link href={option.url}>{option.title}</Link>
             </li>
           ))}

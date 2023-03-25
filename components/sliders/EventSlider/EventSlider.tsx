@@ -1,4 +1,4 @@
-import { BsArrowRightCircle } from 'react-icons/bs';
+import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs';
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,7 +15,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
         <h2 className="title-2 pb-2">{title}</h2>
         <p className="subtitle-2 pb-2">{subtitle}</p>
       </div>
-      <div className="relative  p-2">
+      <div className="relative">
         <Swiper
           style={{ position: 'unset' }}
           slidesPerView={'auto'}
@@ -43,7 +43,10 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
             },
           }}
         >
-          <div className="flex items-stretch justify-items-stretch">
+          <div className="hidden sm:flex items-center absolute top-0 bottom-0 -left-20 right-auto cursor-pointer">
+            <SlideBackButton />
+          </div>
+          <div>
             {events?.map((event, index) => (
               <SwiperSlide key={index} className="p-2">
                 <Cart
@@ -73,12 +76,27 @@ import Cart from '../Cart/Cart';
 interface ISlideNextButton {
   className?: string;
 }
+interface ISlideBackButton {
+  className?: string;
+}
 const SlideNextButton = ({ className }: ISlideNextButton) => {
   const swiper = useSwiper();
 
   return (
     <button className={className} onClick={() => swiper.slideNext()}>
       <BsArrowRightCircle
+        className="text-app-blue bg-white rounded-full"
+        size={50}
+      />
+    </button>
+  );
+};
+const SlideBackButton = ({ className }: ISlideBackButton) => {
+  const swiper = useSwiper();
+
+  return (
+    <button className={className} onClick={() => swiper.slidePrev()}>
+      <BsArrowLeftCircle
         className="text-app-blue bg-white rounded-full"
         size={50}
       />

@@ -5,7 +5,7 @@ import Dropdown from '../Dropdown/Dropdown';
 export function SearchCategory() {
   return (
     <div className="h-[200px] flex justify-center items-center flex-row app-grayLighter bg-cover bg-center app-banner -mt-4 pb-20 shadow-2xl ">
-      <div className="m-3 mr-20 min-[1024px]:hidden">
+      <div className="m-3 mr-20 min-[1024px]:hidden mt-[2rem]">
         <Dropdown />
       </div>
       <div className="hidden min-[1024px]:flex flex-wrap items-center justify-center gap-2 pt-20 w-[50%]">
