@@ -6,7 +6,7 @@ import Dropdown2 from '../../Dropdown/Dropdown2';
 
 const Header = () => {
   return (
-    <div className="bg-black text-white flex items-center justify-between px-4 sm:px-12 py-4 min-h-[70px] text-sm">
+    <div className="bg-black text-white flex items-center justify-between px-4 sm:px-12 py-4 min-h-[71px] text-sm">
       <div>
         <IconLogo />
       </div>

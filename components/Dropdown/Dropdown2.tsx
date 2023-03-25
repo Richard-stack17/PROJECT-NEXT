@@ -4,7 +4,7 @@ import DownIcon from '../assets/svg/User/DownIcon';
 import LogOut from '../assets/svg/User/LogOut';
 
 const Dropdown2 = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   function handleClick() {
     setOpen(!open);
   }
@@ -17,7 +17,7 @@ const Dropdown2 = () => {
         <DownIcon />
       </button>
       {open && (
-        <ul className="bg-white absolute rounded-md shadow-mlg mt-4 right-2 overflow-hidden  z-50 p-2 rounded-lg">
+        <ul className="bg-white absolute shadow-mlg mt-4 right-2 overflow-hidden  z-50 p-2 rounded-lg">
           <li className="px-4 py-2 cursor-pointer flex gap-4">
             <Configuration />
             <a className="text-black">Configuracion</a>
