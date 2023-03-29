@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Heart } from '../../assets/svg/Heart';
 import UserIcon from '../../assets/svg/UserIcon';
 
@@ -28,8 +29,10 @@ const Cart = ({ titulo, descripcion, link, votos, image }: ICart) => {
       </div>
       <div className="relative w-full h-[262px]">
         <div className="p-5 h-[166px]">
-          <h2 className="title-3 pb-2">{titulo}</h2>
-          <p className="overflow-auto text-app-grayDark h-[72px]">
+          <Link href={`/detail/${titulo}`}>
+            <h2 className="title-3 pb-2">{titulo}</h2>
+          </Link>
+          <p className="overflow-hidden text-app-grayDark h-[72px]">
             {descripcion}
           </p>
         </div>

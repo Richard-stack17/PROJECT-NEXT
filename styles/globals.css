@@ -12,7 +12,7 @@
   .app-container {
     @apply m-auto container p-4 lg:max-w-6xl;
   }
-  .app-title-1 {
+  .title-1 {
     @apply font-black text-[48px] leading-[56px] font-Roboto;
   }
   .subtitle-1 {
