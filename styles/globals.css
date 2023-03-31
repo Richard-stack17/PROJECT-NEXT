@@ -7,7 +7,17 @@
     font-family: 'Roboto', sans-serif;
   }
 }
-
+@layer utilities {
+  .li-decore {
+    @apply relative hover:text-app-blue;
+  }
+  .li-decore::after {
+    @apply content-[''] bg-app-blue h-[3px] w-[0%] left-0 -bottom-[5px] rounded-xl absolute duration-300;
+  }
+  .li-decore:hover::after {
+    @apply w-[100%];
+  }
+}
 @layer components {
   .app-container {
     @apply m-auto container p-4 lg:max-w-6xl;

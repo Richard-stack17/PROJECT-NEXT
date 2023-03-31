@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import UserIcon from '../../components/assets/svg/UserIcon';
-import { Layout } from '../../components/layout/Layout';
 import Likes from '../../components/Likes/Likes';
 import { SearchCategory } from '../../components/Presentation/SearchCategory';
+import UserIcon from '../../components/assets/svg/UserIcon';
+import { Layout } from '../../components/layout/Layout';
 import { EventSlider } from '../../components/sliders/EventSlider/EventSlider';
 import { eventsMock } from '../../lib/data/events.mock';
 import { NextPageWithLayout } from '../page';
@@ -22,7 +22,7 @@ export const DetailPage: NextPageWithLayout = () => {
             <div>
               <p>Artista / Pop / Rock</p>
               <h2 className="title-1 pb-2">{object?.title}</h2>
-              <p className="overflow-hidden text-app-grayDark h-[72px] mt-6 mb-11">
+              <p className="overflow-hidden text-app-grayDark lg:h-[72px] mt-6 mb-11">
                 {object?.short_description}
               </p>
               <div className="w-full">
