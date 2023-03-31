@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import SearchIcon from '../assets/svg/SearchIcon';
 import Dropdown from '../Dropdown/Dropdown';
+import SearchIcon from '../assets/svg/SearchIcon';
 
 export function SearchCategory() {
   return (
@@ -25,13 +25,21 @@ export function SearchCategory() {
           </button>
         </Link>
       </div>
-      <div className="relative flex gap-4 p-0 items-center justify-center border-app-gray border-2 rounded-3xl w-[300px] min-h-[59px] sm:w-[550px] mt-20 text-[11px] sm:text-lg bg-white m-2">
-        <input
-          className="w-full p-0 h-full px-5 py-5 rounded-3xl pr-20"
-          type="text"
-          placeholder="¿Qué quieres ver en tu ciudad?"
-        />
-        <SearchIcon />
+      <div className="flex flex-row w-[300px] sm:w-[550px] mt-20 text-[15px]">
+        <div className="basis-[90%]">
+          <input
+            className="border-app-gray border-y-2 border-l-2 h-full w-full pl-2 min-[300px]:pl-6 rounded-l-3xl"
+            type="text"
+            placeholder="¿Qué quieres ver en tu ciudad?"
+          />
+        </div>
+        <div className="flex border-app-gray rounded-r-3xl border-y-2 border-r-2 basis-[10%] justify-center items-center w-6">
+          <Link href={'/search'}>
+            <button className="p-3">
+              <SearchIcon />
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
