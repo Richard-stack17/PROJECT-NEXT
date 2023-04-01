@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import X from '../assets/svg/X';
 
-const CardSing = () => {
+const CardLogin = () => {
   type FormValues = {
     firstName: string;
     lastName: string;
@@ -42,40 +42,21 @@ const CardSing = () => {
           </span>
         <div className="w-full text-left flex flex-col gap-8 m-3">
           <div>
-            <h1 className="text-[32px] font-medium text-white">Todos Votamos :)</h1>
-            <p className='text-white'>Registrate para ingresar.</p>
+            <h1 className="text-[32px] font-medium text-white">!Hola¡</h1>
+            <p className='text-white'>Inicie sesion con los datos que ingreso durante su registro</p>
           </div>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-3"
           >
                <label className="flex flex-col gap-1  rounded-2xl">
-                  <span className="font-semibold ">Email</span>
+                  <span className="font-semibold text-white">Email</span>
                   <input
                     className="p-4 border border-app-grayDark rounded-2xl bg-app-app-grayDark"
                     type="text"
                     {...register('email')}
                   />
                 </label>
-                <section className='flex flex-row gap-2'> 
-                <label className="flex flex-col gap-1">
-                    <span className="font-semibold text-white">First Name</span>
-                    <input
-                      className="p-4 border border-app-grayDark rounded-2xl"
-                      type="text"
-                      {...register('firstName')}
-                    />
-                </label>
-                <label className="flex flex-col gap-1 sm:basis-1/2">
-                  <span className="font-semibold text-white">Last Name</span>
-                  <input
-                    className="p-4 border border-app-grayDark rounded-2xl"
-                    type="text"
-                    {...register('lastName')}
-                  />
-                </label>
-                </section>
-
                 <label className="flex flex-col">
                   <span className="font-semibold text-white">Password</span>
                   <input
@@ -84,9 +65,12 @@ const CardSing = () => {
                     {...register('password')}
                   />
                 </label>
-                <button className='bg-app-yellow p-4 border border-app-grayDark rounded-2xl'>Sign Up</button>
                 <span className="text-center app-subtitle-2 pt-2 text-white">
-                  La contraseña debe tener mayusculas, minusculas y numeros.
+                  ¿Olvidaste tu contraseña?<p className='text-app-yellow'>recupera aquí</p>
+                </span>
+                <button className='bg-app-yellow p-4 border border-app-grayDark rounded-2xl'>Sign Up</button>
+                <span className="text-center app-subtitle-2 pt-2 text-app-yellow">
+                  O crea una cuneta nueva
                 </span>
           </form>
         </div>
@@ -94,4 +78,4 @@ const CardSing = () => {
   );
 };
 
-export default CardSing;
+export default CardLogin;
