@@ -4,7 +4,6 @@ import Likes from '../../components/Likes/Likes';
 import { SearchCategory } from '../../components/Presentation/SearchCategory';
 import UserIcon from '../../components/assets/svg/UserIcon';
 import { Layout } from '../../components/layout/Layout';
-import { EventSlider } from '../../components/sliders/EventSlider/EventSlider';
 import { eventsMock } from '../../lib/data/events.mock';
 import { NextPageWithLayout } from '../page';
 
@@ -61,11 +60,11 @@ export const DetailPage: NextPageWithLayout = () => {
           <Likes />
         </div>
         <div className="mb-[114px]">
-          <EventSlider
+          {/* <EventSlider
             title="Recientes"
             subtitle="Las personas últimamente están hablando de esto"
             events={eventsMock}
-          />
+          /> */}
         </div>
       </div>
     </div>
