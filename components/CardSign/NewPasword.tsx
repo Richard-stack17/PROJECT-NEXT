@@ -33,7 +33,7 @@ const NewPassword = () => {
   const URL = '/auth/change-password';
   const [datos, setDatos] = useState({});
 
-  const Login = (data: any) => {
+  const Login = (data: FormValues) => {
     axios
       .post(URL, data)
       .then((res) => {

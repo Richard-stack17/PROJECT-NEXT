@@ -29,6 +29,15 @@ export interface Publication {
   tags: PublicationType[];
 }
 
+export interface PublicationPost {
+  id: string;
+  title: string;
+  description: string;
+  reference_link: string;
+  images: Image[];
+  votes_count: number;
+}
+
 export interface Image {
   publication_id: string;
   image_url: string;

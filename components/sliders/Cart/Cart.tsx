@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Publication } from '../../../lib/interfaces/publications.interface';
+import { PublicationPost } from '../../../lib/interfaces/publications.interface';
 import {
   usePublications,
   votePublications,
@@ -16,7 +16,7 @@ const Cart = ({
   votes_count,
   images,
   id,
-}: Publication) => {
+}: PublicationPost) => {
   const [like, setLike] = useState(false);
   const { mutate: mutatePublications } = usePublications();
   const handleClick = () => {

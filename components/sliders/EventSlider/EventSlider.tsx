@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 interface IEventSlider {
   title?: string;
   subtitle?: string;
-  events?: Publication[];
+  events?: PublicationPost[];
 }
 
 export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
@@ -71,7 +71,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
 
 // some-inner-component.jsx
 import { useSwiper } from 'swiper/react';
-import { Publication } from '../../../lib/interfaces/publications.interface';
+import { PublicationPost } from '../../../lib/interfaces/publications.interface';
 import Cart from '../Cart/Cart';
 
 interface ISlideNextButton {
