@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 interface IEventSlider {
   title?: string;
   subtitle?: string;
-  events: IEventMock[];
+  events?: Publication[];
 }
 
 export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
@@ -50,11 +50,12 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
             {events?.map((event, index) => (
               <SwiperSlide key={index} className="p-2">
                 <Cart
-                  titulo={event.title}
-                  descripcion={event['short_description']}
-                  image={event.image}
-                  votos={event.votes}
-                  link={event.url}
+                  id={event.id}
+                  title={event.title}
+                  description={event.description}
+                  images={event.images}
+                  votes_count={event.votes_count}
+                  reference_link={event.reference_link}
                 />
               </SwiperSlide>
             ))}
@@ -70,7 +71,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
 
 // some-inner-component.jsx
 import { useSwiper } from 'swiper/react';
-import { IEventMock } from '../../../lib/data/events.mock';
+import { Publication } from '../../../lib/interfaces/publications.interface';
 import Cart from '../Cart/Cart';
 
 interface ISlideNextButton {

@@ -2,7 +2,6 @@ import Dropdown3 from '../../components/Dropdown/Dropdown3';
 import { Layout } from '../../components/layout/Layout';
 import { Search } from '../../components/Presentation/Search';
 import Cart2 from '../../components/sliders/Cart/Cart2';
-import { EventSlider } from '../../components/sliders/EventSlider/EventSlider';
 import { eventsMock } from '../../lib/data/events.mock';
 import { NextPageWithLayout } from '../page';
 
@@ -56,11 +55,11 @@ const SearchPage: NextPageWithLayout = () => {
         </div>
         <div className="self-center">1 2 3 4 5</div>
         <div className="mb-[114px] lg:ml-[-50px]">
-          <EventSlider
-            title="Recientes"
-            subtitle="Las personas últimamente están hablando de esto"
-            events={eventsMock}
-          />
+          {/* <EventSlider
+          title="Recientes"
+          subtitle="Las personas últimamente están hablando de esto"
+          events={publications}
+        /> */}
         </div>
       </div>
     </div>

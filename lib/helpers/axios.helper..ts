@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import Cookie from 'js-cookie';
+import Cookie from 'js-cookie';
 import getConfig from 'next/config';
 import Router from 'next/router';
 
@@ -12,7 +12,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   async (config) => {
-    const token = await getTokenFromCookie();
+    const token = await getTokenFromCookie(); //saber si existe el token
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -30,6 +30,6 @@ instance.interceptors.request.use(
 export default instance;
 
 async function getTokenFromCookie() {
-  return null;
-  // return Cookie.get('token');
+  //return null;
+  return Cookie.get('token'); //si en las cookies exist3e un token si no existe retornara un null
 }
