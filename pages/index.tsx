@@ -1,18 +1,24 @@
 import Link from 'next/link';
-import Logo from '../components/assets/logo/Logo';
-import { Layout } from '../components/layout/Layout';
 import Likes from '../components/Likes/Likes';
 import { Search } from '../components/Presentation/Search';
+import Logo from '../components/assets/logo/Logo';
+import { Layout } from '../components/layout/Layout';
 import { EventSlider } from '../components/sliders/EventSlider/EventSlider';
-import { eventsMock } from '../lib/data/events.mock';
 import { useCategories } from '../lib/services/categories.services';
+import { usePublications } from '../lib/services/publications.services';
 import { NextPageWithLayout } from './page';
 
 const Home: NextPageWithLayout = () => {
-  const { data, error, isLoading } = useCategories();
+  //const { data, error, isLoading } = useCategories();
 
-  console.log({ data, error, isLoading });
+  //console.log({ data, error, isLoading });
 
+  const { data: publicationResponse, error, isLoading } = usePublications();
+  const { data: categories } = useCategories();
+
+  console.log({ categories });
+  console.log({ publicationResponse, error, isLoading });
+  const publications = publicationResponse?.results;
   return (
     <div>
       {/* HERO SECTION */}
@@ -43,22 +49,9 @@ const Home: NextPageWithLayout = () => {
           </div>
         </div>
       </div>
+
       {/* CONTENIDO */}
       <div className="flex flex-col gap-6">
-        <div className="my-5 mt-[77px]">
-          <EventSlider
-            title="Populares en Querétaro"
-            subtitle="Lo que las personas piden más"
-            events={eventsMock}
-          />
-        </div>
-        <div>
-          <EventSlider
-            title="Sugerencias para ti"
-            subtitle="Publicaciones que podrías colaborar"
-            events={eventsMock}
-          />
-        </div>
         <div className="bg-app-grayLighter p-5 my-12">
           <Likes />
         </div>
@@ -66,7 +59,7 @@ const Home: NextPageWithLayout = () => {
           <EventSlider
             title="Recientes"
             subtitle="Las personas últimamente están hablando de esto"
-            events={eventsMock}
+            events={publications}
           />
         </div>
       </div>

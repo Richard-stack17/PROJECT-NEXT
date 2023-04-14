@@ -1,46 +1,68 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { PublicationPost } from '../../../lib/interfaces/publications.interface';
+import {
+  usePublications,
+  votePublications,
+} from '../../../lib/services/publications.services';
 import { Heart } from '../../assets/svg/Heart';
 import UserIcon from '../../assets/svg/UserIcon';
 
-interface ICart {
-  titulo: string;
-  descripcion: string;
-  link: string;
-  votos: number;
-  image: string;
-}
+const Cart = ({
+  title,
+  description,
+  reference_link,
+  votes_count,
+  images,
+  id,
+}: PublicationPost) => {
+  const [like, setLike] = useState(false);
+  const { mutate: mutatePublications } = usePublications();
+  const handleClick = () => {
+    setLike(!like);
+    if (like === false) {
+      votePublications(id);
+      mutatePublications();
+    }
+    console.log(id);
 
-const Cart = ({ titulo, descripcion, link, votos, image }: ICart) => {
+    console.log(votes_count);
+  };
+  console.log(images);
   return (
-    <div className="bg-white rounded-3xl flex flex-col drop-shadow-xl">
-      <div className="relative">
-        <Image
-          src={image}
-          className="w-full rounded-t-3xl"
-          alt="cart image"
-          width="700"
-          height="700"
-        />
+    <div className="bg-white rounded-3xl flex flex-col drop-shadow-xl w-[325px] ">
+      <div className="relative h-[300px]">
+        {images && images?.length > 0 && (
+          <Image
+            className="w-full"
+            src={`${images[0]?.image_url}`}
+            width={500}
+            height={500}
+            alt=""
+          />
+        )}
+
         <Heart
-          className="absolute right-2 top-[85%] w-10 sm:w-[47px]"
-          isActive={true}
+          className="absolute right-2 top-[85%] w-10 sm:w-[47px] cursor-pointer"
+          isActive={like}
+          onClick={handleClick}
         />
       </div>
       <div className="relative w-full h-[262px]">
         <div className="p-5 h-[166px]">
-          <Link href={`/detail/${titulo}`}>
-            <h2 className="title-3 pb-2">{titulo}</h2>
+          <Link href={`/detail/${title}`}>
+            <h2 className="title-3 pb-2">{title}</h2>
           </Link>
           <p className="overflow-hidden text-app-grayDark h-[72px]">
-            {descripcion}
+            {description}
           </p>
         </div>
         <div className="p-5 w-full">
-          <p className="text-app-blue font-medium mb-2">{link}</p>
+          <p className="text-app-blue font-medium mb-2">{reference_link}</p>
           <div className="flex gap-3 ">
             <UserIcon color="black" />
-            <span className="font-medium">{votos} votos</span>
+            <span className="font-medium">{votes_count} votos</span>
           </div>
         </div>
       </div>
