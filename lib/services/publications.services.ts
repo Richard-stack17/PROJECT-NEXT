@@ -1,14 +1,18 @@
 import useSWR from 'swr';
 import axios from '../helpers/axios.helper.'; //usamos el axios personalizado, para hacer esas configuraciones
 import {
-  Publication,
+  ImagesUpload,
+  PublicationForm,
   PublicationResponse,
 } from '../interfaces/publications.interface';
 
-function usePublications() {
-  const { data, error, isLoading, mutate } = useSWR<PublicationResponse>(
-    '/publications' //'https://paracuando-academlo-api.academlo.tech/api/v1/publications'
-  );
+function usePublications({ categoryId }: { categoryId?: string } = {}) {
+  const url = categoryId
+    ? `/publications?publications_types_ids=${categoryId}`
+    : '/publications/';
+
+  const { data, error, isLoading, mutate } = useSWR<PublicationResponse>(url);
+
   return {
     data: data?.results,
     error,
@@ -17,18 +21,16 @@ function usePublications() {
   };
 }
 
-function createPublications(data: Publication) {
+function createPublications(data: PublicationForm) {
   return axios.post('/publications', data);
 }
-
-/*function getPublications() {
-  return axios.get(
-    'https://paracuando-academlo-api.academlo.tech/api/v1/publications'
-  );
-}*/
 
 function votePublications(publicationID: string) {
   return axios.post(`/publications/${publicationID}/vote`);
 }
 
-export { usePublications, createPublications, votePublications };
+function addImage(publicationID: string, data: ImagesUpload) {
+  return axios.post(`/publications/${publicationID}/add-image`, data);
+}
+
+export { usePublications, createPublications, votePublications, addImage };

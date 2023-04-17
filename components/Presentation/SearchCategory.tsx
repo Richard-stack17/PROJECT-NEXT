@@ -1,29 +1,25 @@
 import Link from 'next/link';
+import { useCategories } from '../../lib/services/categories.services';
 import Dropdown from '../Dropdown/Dropdown';
 import SearchIcon from '../assets/svg/SearchIcon';
 
 export function SearchCategory() {
+  const { data: categoryResponse } = useCategories();
+  const categories = categoryResponse?.results;
   return (
     <div className="h-[150px] flex justify-center items-center flex-row app-grayLighter bg-cover bg-center app-banner -mt-4 pb-20 shadow-md">
       <div className="m-3 mr-20 min-[1024px]:hidden mt-[2rem]">
         <Dropdown />
       </div>
       <div className="hidden min-[1024px]:flex flex-wrap items-center justify-center gap-2 pt-20 w-[50%]">
-        <Link href={'/category/Marcas y tiendas'}>
-          <button className="border-app-grayLight border-2 text-app-gray py-[15.5px] px-[19px] rounded-3xl bg-white subtitle-1">
-            Marcas y tiendas
-          </button>
-        </Link>
-        <Link href={'/category/Artistas y conciertos'}>
-          <button className="border-app-grayLight border-2 text-app-gray py-[15.5px] px-[19px] rounded-3xl bg-white subtitle-1">
-            Artistas y conciertos
-          </button>
-        </Link>
-        <Link href={'/category/Torneos y eventos'}>
-          <button className="border-app-grayLight border-2 text-app-gray py-[15.5px] px-[19px] rounded-3xl bg-white subtitle-1">
-            Torneos
-          </button>
-        </Link>
+        {categories &&
+          categories.map((category) => (
+            <Link href={`/category/${category.id}`} key={category.id}>
+              <button className="border-app-grayLight border-2 text-app-gray py-[15.5px] px-[19px] rounded-3xl bg-white subtitle-1">
+                {category.name}
+              </button>
+            </Link>
+          ))}
       </div>
       <div className="flex flex-row w-[300px] sm:w-[550px] mt-20 text-[15px]">
         <div className="basis-[90%]">

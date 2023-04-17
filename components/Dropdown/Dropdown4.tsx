@@ -6,31 +6,9 @@ interface IDropdown {
   LlamarSetValue: (_optionTitle: string) => void; //el _ es para que no le haga seguimiento, que obvie
 }
 
-const Dropdown4 = ({ GroupName = '', LlamarSetValue }: IDropdown) => {
+const Dropdown4 = ({ GroupName = '', LlamarSetValue, data }: IDropdown) => {
   const [open, setOpen] = useState(false);
   const [optionSelected, setOptionSelected] = useState(`${GroupName}`);
-  type Places = {
-    id: number;
-    title: string;
-    url: string;
-  };
-  const options: Places[] = [
-    {
-      id: 0,
-      title: 'Marcas y Tiendas',
-      url: '/category/Marcas y tiendas',
-    },
-    {
-      id: 1,
-      title: 'Artistos y conciertos',
-      url: '/category/Artistas y conciertos',
-    },
-    {
-      id: 2,
-      title: 'Torneos',
-      url: '/category/Torneos y eventos',
-    },
-  ];
   function handleClick() {
     setOpen(!open);
   }
@@ -46,7 +24,7 @@ const Dropdown4 = ({ GroupName = '', LlamarSetValue }: IDropdown) => {
         </div>
       </div>
       {open && (
-        <ul className="bg-white relative  shadow-mlg mt-4 overflow-hidden  z-50 w-full rounded-[11px] border-[2px] border-app-gray  font-[400] text-[#7D7D7D]">
+        <ul className="bg-white relative  shadow-mlg mt-4   z-50 w-full rounded-[11px] border-[2px] border-app-gray  font-[400] text-[#7D7D7D]">
           <li className="flex justify-between w-full px-4 py-2 gap-4 ">
             <div>{GroupName}</div>
             <div onClick={handleClick}>
@@ -56,19 +34,21 @@ const Dropdown4 = ({ GroupName = '', LlamarSetValue }: IDropdown) => {
               />
             </div>
           </li>
-          {options.map((option) => (
-            <li
-              className="px-4 py-2 cursor-pointer flex gap-4 text-[#A7A6A7]"
-              key={option.id}
-              onClick={() => {
-                setOptionSelected(option.title),
-                  LlamarSetValue(option.title),
-                  setOpen(false);
-              }}
-            >
-              {option.title}
-            </li>
-          ))}
+
+          {data &&
+            data.map((option) => (
+              <li
+                className="px-4 py-2 cursor-pointer flex gap-4 text-[#A7A6A7] "
+                key={option.id}
+                onClick={() => {
+                  setOptionSelected(option.name),
+                    LlamarSetValue(option.id),
+                    setOpen(false);
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
         </ul>
       )}
     </div>

@@ -29,19 +29,16 @@ const Cart = ({
 
     console.log(votes_count);
   };
-  console.log(images);
   return (
     <div className="bg-white rounded-3xl flex flex-col drop-shadow-xl w-[325px] ">
       <div className="relative h-[300px]">
-        {images && images?.length > 0 && (
-          <Image
-            className="w-full"
-            src={`${images[0]?.image_url}`}
-            width={500}
-            height={500}
-            alt=""
-          />
-        )}
+        <Image
+          className="w-full h-full object-cover"
+          src={images[0]?.image_url ? images[0]?.image_url : '/nothing.png'}
+          width={500}
+          height={500}
+          alt=""
+        />
 
         <Heart
           className="absolute right-2 top-[85%] w-10 sm:w-[47px] cursor-pointer"

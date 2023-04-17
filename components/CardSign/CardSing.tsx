@@ -47,9 +47,12 @@ const CardSing = () => {
                       bg-app-form border-solid border-4 border-app-gray rounded-3xl relative
       "
     >
-      <span className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 ">
+      <Link
+        className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 cursor-pointer "
+        href={'/'}
+      >
         <X />
-      </span>
+      </Link>
       <div className="w-full text-left flex flex-col gap-8 ">
         <div>
           <h1 className="text-[32px] font-medium text-white">

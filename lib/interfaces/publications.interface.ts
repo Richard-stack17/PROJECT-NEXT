@@ -37,6 +37,23 @@ export interface PublicationPost {
   images: Image[];
   votes_count: number;
 }
+/*this was created by me */
+export interface PublicationForm {
+  title: string;
+  publication_type_id: string;
+  content: string;
+  description: string;
+  reference_link: string;
+  tags: string;
+}
+/*this also */
+export interface ImagesUpload {
+  images: FileList;
+}
+/*this also */
+export interface ImageUpload {
+  image_url: string;
+}
 
 export interface Image {
   publication_id: string;

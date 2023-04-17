@@ -1,7 +1,8 @@
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import X from '../assets/svg/X';
 
-const CreatAcount = () => {
+const CreateAccount = () => {
   type FormValues = {
     // firstName: string;
     // lastName: string;
@@ -38,9 +39,12 @@ const CreatAcount = () => {
                       bg-app-form border-solid border-4 border-app-gray rounded-3xl p-10 relative
       "
     >
-      <span className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 ">
+      <Link
+        className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 cursor-pointer"
+        href={'/'}
+      >
         <X />
-      </span>
+      </Link>
       <div className="w-full text-left flex flex-col gap-8 m-3">
         <div>
           <h1 className="text-[32px] font-medium text-white">
@@ -65,4 +69,4 @@ const CreatAcount = () => {
   );
 };
 
-export default CreatAcount;
+export default CreateAccount;

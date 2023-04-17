@@ -16,7 +16,7 @@ const Cart2 = ({ titulo, descripcion, link, votos, image }: ICart) => {
     <div className="bg-white rounded-3xl flex flex-row drop-shadow-xl max-w-[934px] max-h-[300px]">
       <div className="relative basis-[40%]">
         <Image
-          src={image}
+          src={image ? image : '/nothing.png'}
           className="w-full rounded-3xl object-cover h-full"
           alt="cart image"
           width="700"

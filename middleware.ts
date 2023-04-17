@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
 
   const jwt = request.cookies.get('token');
   if (!jwt) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(new URL('/sign-up', request.url));
   }
 
   // try {
@@ -24,5 +24,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile/:path*', '/create-event'],
+  matcher: ['/profile/:path*', '/createPublication'],
 };

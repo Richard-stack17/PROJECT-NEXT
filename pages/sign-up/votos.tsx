@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import CreatAcount from '../../components/CardSign/CreatAcount';
+import CreatAcount from '../../components/CardSign/CreateAcount';
 import Logo from '../../components/assets/logo/Logo';
 
 export default function SingUpPage() {
