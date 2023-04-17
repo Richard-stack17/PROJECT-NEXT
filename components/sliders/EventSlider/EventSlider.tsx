@@ -56,6 +56,7 @@ export const EventSlider = ({ title, subtitle, events }: IEventSlider) => {
                   images={event.images}
                   votes_count={event.votes_count}
                   reference_link={event.reference_link}
+                  // isVoted= {event.same_vote.length>0 ? true : false}
                 />
               </SwiperSlide>
             ))}
