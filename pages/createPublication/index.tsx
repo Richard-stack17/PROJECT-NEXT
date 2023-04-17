@@ -1,55 +1,71 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import Dropdown4 from '../../components/Dropdown/Dropdown4';
+import swal from 'sweetalert';
 import Logo from '../../components/assets/logo/Logo';
+import Plus from '../../components/assets/svg/Plus';
+import { useCategories } from '../../lib/services/categories.services';
+import { createPublications } from '../../lib/services/publications.services';
+import { useTags } from '../../lib/services/tags.services';
 
 const Index = () => {
+  /*consumo api */
+  const { data: tagResponse } = useTags();
+  const tags = tagResponse?.results;
+
+  const { data: categoryResponse } = useCategories();
+  const categories = categoryResponse?.results;
+
   type FormValues = {
     title: string;
     publication_type_id: string;
     content: string;
     description: string;
     reference_link: string;
+    tags: string;
   };
 
-  const saveOption = (option: string) => {
-    setValue('publication_type_id', option);
-  };
-
-  const saveOption2 = (option: string) => {
-    setValue('content', option);
-  };
-
-  const { register, handleSubmit, setValue } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       title: '',
       publication_type_id: '',
       content: '',
       description: '',
       reference_link: '',
+      tags: '',
     },
   });
+  const [publiId, setPubliId] = useState('');
+
   const onSubmit = async (data: FormValues) => {
     console.log(data);
-
-    // createUser(data)
-    //   .then((resp) => {
-    //     console.log(resp);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+    createPublications(data)
+      .then((res) => {
+        swal('Good job!', 'You clicked the button!', 'success');
+        console.log(res.data);
+        setPubliId(res.data.results.id);
+        console.log(publiId);
+        // console.log(res.data.results.id);
+        functionBtnNext();
+      })
+      .catch((err) => {
+        swal('Fail!', 'You clicked the button!', 'warning');
+        console.log(err);
+        reset();
+      });
   };
+
+  /*IMAGES */
+
   //part that is hidden-block
   const [percent, setPercent] = useState('50%');
   const [display1, setDisplay1] = useState('block');
   const [display2, setDisplay2] = useState('hidden');
+
+  const router = useRouter();
+
   const functionBack = () => {
-    if (percent === '100%') {
-      setPercent('50%');
-      setDisplay1('block');
-      setDisplay2('hidden');
-    }
+    router.push('/');
   };
   const functionBtnNext = () => {
     if (percent === '50%') {
@@ -58,6 +74,9 @@ const Index = () => {
       setDisplay2('block');
     }
   };
+
+  /*IMAGEN */
+
   return (
     <div>
       <div className="flex flex-col min-[1028px]:flex-row w-full min-h-[100vh] overflow-hidden">
@@ -93,7 +112,7 @@ const Index = () => {
             </div>
           </div>
           {/*content */}
-          <div className="flex overflow-hidden">
+          <div className="flex">
             <form
               className={`min-[1028px]:pl-20 w-full ${display1}`}
               onSubmit={handleSubmit(onSubmit)}
@@ -115,13 +134,36 @@ const Index = () => {
               </div>
               <div className="min-[1028px]:flex justify-between">
                 <div className=" relative my-5 rounded-[11px] min-[1028px]:w-[47%] ">
-                  <Dropdown4 GroupName="Tipo" LlamarSetValue={saveOption} />
+                  <select
+                    id="pet-select"
+                    className="flex justify-between items-center w-full h-[50px] border-[2px]  rounded-[11px] border-app-gray px-4  font-[400] text-[#7D7D7D]"
+                    {...register('publication_type_id')}
+                    required
+                  >
+                    <option value="">Tipos</option>
+                    {categories &&
+                      categories.map((element) => (
+                        <option value={element.id} key={element.id}>
+                          {element.name}
+                        </option>
+                      ))}
+                  </select>
                 </div>
                 <div className=" relative my-5 rounded-[11px] min-[1028px]:w-[47%] ">
-                  <Dropdown4
-                    GroupName="Categoría"
-                    LlamarSetValue={saveOption2}
-                  />
+                  <select
+                    id="pet-select"
+                    className="flex justify-between items-center w-full h-[50px] border-[2px]  rounded-[11px] border-app-gray px-4  font-[400] text-[#7D7D7D]"
+                    {...register('tags')}
+                    required
+                  >
+                    <option value="">Categorias</option>
+                    {tags &&
+                      tags.map((element) => (
+                        <option value={element.id} key={element.id}>
+                          {element.name}
+                        </option>
+                      ))}
+                  </select>
                 </div>
               </div>
               <div className=" relative my-5 rounded-[11px] mt-6">
@@ -131,9 +173,10 @@ const Index = () => {
                 <textarea
                   className="w-full flex flex-wrap border-[2px]  pt-1 rounded-[11px] border-app-gray pl-4 h-[116px]"
                   {...register('description')}
+                  required
                 ></textarea>
               </div>
-              <div className=" relative my-5  h-[50px] rounded-[11px]">
+              <div className=" relative my-5 mt-8  h-[50px] rounded-[11px]">
                 <p className="absolute top-[-1rem] left-2 bg-white px-1  font-[400] text-[#7D7D7D]">
                   Link de la referencia
                 </p>
@@ -141,33 +184,30 @@ const Index = () => {
                   className="w-full h-full border-[2px]  rounded-[11px] border-app-gray pl-4"
                   type="text"
                   {...register('reference_link')}
+                  required
                 ></input>
               </div>
               <div className="flex justify-center">
-                <button
-                  className="sm:block rounded-3xl px-5 py-3 bg-app-blue text-white sm:w-[124px] min-[1028px]:mt-9"
-                  onClick={functionBtnNext}
-                >
+                <button className="sm:block rounded-3xl px-5 py-3 bg-app-blue text-white sm:w-[124px] min-[1028px]:mt-9">
                   Siguiente
                 </button>
               </div>
             </form>
-            <div className={`min-[1028px]:pl-20 w-full ${display2}`}>
+            <form className={`min-[1028px]:pl-20 w-full ${display2}`}>
               <h1 className="title-2 pb-2">Fotos</h1>
               <p className="subtitle-2 text-app-grayDark mb-10">
                 Selecciona máximo tres fotos para crear una galería
               </p>
 
-              <div className="p-3 py-4 border-app-gray border-[2px] flex min-h-[150px] gap-3 items-stretch justify-items-stretch justify-between  rounded-xl">
-                <div className="bg-[#D9D9D9]  border-[2px] basis-1/3  p-5 aspect-square min-[1028px]:rounded-3xl flex justify-center items-center text-app-blue text-[1.2rem] sm:text-[2rem] relative">
-                  +
-                  <input className="bg-red-500 absolute w-full h-full min-[1028px]:rounded-3xl"></input>
+              <div className="flex flex-wrap lg:grid-cols-3 gap-4 justify-center items-center  py-7 border-[1px] border-app-gray rounded-2xl">
+                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                  <Plus />
                 </div>
-                <div className="bg-[#D9D9D9] border-[2px] basis-1/3  p-5 aspect-square min-[1028px]:rounded-3xl flex justify-center items-center text-app-blue text-[1.2rem] sm:text-[2rem]">
-                  +
+                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                  <Plus />
                 </div>
-                <div className="bg-[#D9D9D9]  border-[2px] basis-1/3  p-5 aspect-square min-[1028px]:rounded-3xl flex justify-center items-center text-app-blue text-[1.2rem] sm:text-[2rem]">
-                  +
+                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                  <Plus />
                 </div>
               </div>
               <div className="flex justify-center items-center my-10 mt-20">
@@ -175,7 +215,7 @@ const Index = () => {
                   Publicar
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

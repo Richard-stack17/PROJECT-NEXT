@@ -37,6 +37,7 @@ const CardLogin = () => {
       });
   };
 
+  /*EYES  */
   const [stateB, setStateB] = useState(false);
   const handleBotton = () => {
     if (stateB) {
@@ -53,9 +54,12 @@ const CardLogin = () => {
                       bg-app-form border-solid border-2 border-app-gray rounded-3xl p-10 relative
       "
     >
-      <span className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 ">
+      <Link
+        className="border-2 rounded-full border-app-yellow p-2 absolute top-4 right-4 cursor-pointer"
+        href={'/'}
+      >
         <X />
-      </span>
+      </Link>
       <div className="w-full text-left flex flex-col gap-8 m-3">
         <div>
           <h1 className="text-[32px] font-medium text-white">¡Hola!</h1>
@@ -105,7 +109,7 @@ const CardLogin = () => {
           <span className="text-center">
             <Link
               className="text-app-yellow border-app-yellow border-b-[1.5px]"
-              href={'/sign-up/creat'}
+              href={'/sign-up/create'}
             >
               O crea una nueva cuenta
             </Link>

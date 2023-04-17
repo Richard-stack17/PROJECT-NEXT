@@ -16,7 +16,7 @@ const ConfigPage: NextPageWithLayout = () => {
       </h2>
       <div className=" flex flex-col sm:flex-row xs:items-center justify-center  xs:flex-col sm:justify-start">
         <section className="flex flex-col items-center justify-center m-[20px] relative">
-          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-gray rounded-2xl ">
+          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-grayLight rounded-2xl ">
             <Plus />
           </div>
           <p className="bg-gray px-1  font-[400] text-[#7D7D7D] mt-3">
@@ -52,7 +52,7 @@ const ConfigPage: NextPageWithLayout = () => {
       </h2>
       <section className="flex items-center justify-center sm:flex-row sm:flex-wrap sm:justify-start  gap-5 flex-col xs:flex-col pl-4">
         <div className="flex flex-col items-center justify-center md:w-[calc(95%/3)]">
-          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-gray rounded-2xl sm:w-full">
+          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-grayLight rounded-2xl sm:w-full">
             <Plus />
           </div>
           <p className="bg-gray px-1  font-[400] text-[#7D7D7D] m-8">
@@ -60,7 +60,7 @@ const ConfigPage: NextPageWithLayout = () => {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center md:w-[calc(95%/3)]">
-          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-gray rounded-2xl sm:w-full">
+          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-grayLight rounded-2xl sm:w-full">
             <Plus />
           </div>
           <p className="bg-gray px-1  font-[400] text-[#7D7D7D] m-8">
@@ -68,7 +68,7 @@ const ConfigPage: NextPageWithLayout = () => {
           </p>
         </div>
         <div className="flex flex-col items-center justify-center md:w-[calc(95%/3)]">
-          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-gray rounded-2xl sm:w-full ">
+          <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[220px] xs:h-[206px] bg-app-grayLight rounded-2xl sm:w-full ">
             <Plus />
           </div>
           <p className="bg-gray px-1  font-[400] text-[#7D7D7D] m-8">

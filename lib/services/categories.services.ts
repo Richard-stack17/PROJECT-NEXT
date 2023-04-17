@@ -5,7 +5,7 @@ function useCategories() {
     '/publications-types'
   );
   return {
-    data: data,
+    data: data?.results,
     error,
     isLoading,
     mutate,

@@ -59,7 +59,7 @@ const Header = () => {
               <Link href={'/sign-up/'}>Log In</Link>
             </div>
             <div>
-              <Link href={'/sign-up/creat'}>Sign Up</Link>
+              <Link href={'/sign-up/create'}>Sign Up</Link>
             </div>
           </div>
         )}

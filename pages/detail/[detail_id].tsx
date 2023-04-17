@@ -4,13 +4,16 @@ import Likes from '../../components/Likes/Likes';
 import { SearchCategory } from '../../components/Presentation/SearchCategory';
 import UserIcon from '../../components/assets/svg/UserIcon';
 import { Layout } from '../../components/layout/Layout';
-import { eventsMock } from '../../lib/data/events.mock';
+import { usePublications } from '../../lib/services/publications.services';
 import { NextPageWithLayout } from '../page';
 
 export const DetailPage: NextPageWithLayout = () => {
   const router = useRouter();
   const { detail_id } = router.query;
-  const object = eventsMock.find((event) => event.title == detail_id);
+  const { data: publicationResponseAll } = usePublications({});
+  console.log({ publicationResponseAll });
+  const publicationsAll = publicationResponseAll?.results;
+  const object = publicationsAll?.find((event) => event.title == detail_id);
   console.log(object);
   return (
     <div>
@@ -22,13 +25,17 @@ export const DetailPage: NextPageWithLayout = () => {
               <p>Artista / Pop / Rock</p>
               <h2 className="title-1 pb-2">{object?.title}</h2>
               <p className="overflow-hidden text-app-grayDark lg:h-[72px] mt-6 mb-11">
-                {object?.short_description}
+                {object?.description}
               </p>
               <div className="w-full">
-                <p className="text-app-blue font-medium mb-2">{object?.url}</p>
+                <p className="text-app-blue font-medium mb-2">
+                  {object?.reference_link}
+                </p>
                 <div className="flex gap-3 ">
                   <UserIcon color="black" />
-                  <span className="font-medium">{object?.votes} votos</span>
+                  <span className="font-medium">
+                    {object?.votes_count} votos
+                  </span>
                 </div>
               </div>
             </div>
@@ -39,14 +46,18 @@ export const DetailPage: NextPageWithLayout = () => {
             </div>
           </div>
 
-          <div className="basis-[60%] mt-5 min-[1028px]:mt-0">
+          <div className="basis-[45%] mt-5 min-[1028px]:mt-0">
             {object && (
               <Image
-                src={object?.image}
+                src={
+                  object?.images[0]?.image_url
+                    ? object?.images[0]?.image_url
+                    : '/nothing.png'
+                }
                 className="w-full"
                 alt="cart image"
-                width="1000"
-                height="1000"
+                width="500"
+                height="500"
               />
             )}
           </div>

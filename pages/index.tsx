@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import Likes from '../components/Likes/Likes';
 import { Search } from '../components/Presentation/Search';
 import Logo from '../components/assets/logo/Logo';
@@ -9,16 +10,25 @@ import { usePublications } from '../lib/services/publications.services';
 import { NextPageWithLayout } from './page';
 
 const Home: NextPageWithLayout = () => {
-  //const { data, error, isLoading } = useCategories();
+  const [categoryId, setCategoryId] = useState('');
 
-  //console.log({ data, error, isLoading });
+  const {
+    data: publicationResponse,
+    error,
+    isLoading,
+  } = usePublications({ categoryId: `${categoryId}` });
 
-  const { data: publicationResponse, error, isLoading } = usePublications();
-  const { data: categories } = useCategories();
-
-  console.log({ categories });
   console.log({ publicationResponse, error, isLoading });
   const publications = publicationResponse?.results;
+
+  const { data: publicationResponseAll } = usePublications({});
+
+  console.log({ publicationResponseAll });
+  const publicationsAll = publicationResponseAll?.results;
+
+  const { data: categoryResponse } = useCategories();
+  const categories = categoryResponse?.results;
+  console.log(categories);
   return (
     <div>
       {/* HERO SECTION */}
@@ -31,21 +41,18 @@ const Home: NextPageWithLayout = () => {
             <Search />
           </div>
           <div className="flex items-center justify-center gap-2 pb-5 mb-[4.5rem] mx-3">
-            <Link href={'/category/Marcas y tiendas'}>
-              <button className="border-app-grayLight border-2 text-app-gray py-[7.5px] px-[1rem] rounded-3xl bg-white texto-1">
-                Marcas y tiendas
-              </button>
-            </Link>
-            <Link href={'/category/Artistas y conciertos'}>
-              <button className="border-app-grayLight border-2 text-app-gray py-[7.5px] px-[1rem] rounded-3xl bg-white texto-1">
-                Artistas y conciertos
-              </button>
-            </Link>
-            <Link href={'/category/Torneos y eventos'}>
-              <button className="border-app-grayLight border-2 text-app-gray py-[7.5px] px-[1rem] rounded-3xl bg-white texto-1">
-                Torneos
-              </button>
-            </Link>
+            {categories &&
+              categories.map((category) => (
+                <Link
+                  href={`/category/${category.id}`}
+                  key={category.id}
+                  onClick={() => setCategoryId(category.id)}
+                >
+                  <button className="border-app-grayLight border-2 text-app-gray py-[7.5px] px-[1rem] rounded-3xl bg-white texto-1">
+                    {category.name}
+                  </button>
+                </Link>
+              ))}
           </div>
         </div>
       </div>
@@ -57,9 +64,23 @@ const Home: NextPageWithLayout = () => {
         </div>
         <div className="mb-[114px]">
           <EventSlider
+            title="Populares en Querétaro"
+            subtitle="Lo que las personas piden más"
+            events={publications}
+          />
+        </div>
+        <div className="mb-[114px]">
+          <EventSlider
+            title="Sugerencias para ti"
+            subtitle="Publicaciones que podrías colaborar"
+            events={publicationsAll}
+          />
+        </div>
+        <div className="mb-[114px]">
+          <EventSlider
             title="Recientes"
             subtitle="Las personas últimamente están hablando de esto"
-            events={publications}
+            events={publicationsAll}
           />
         </div>
       </div>

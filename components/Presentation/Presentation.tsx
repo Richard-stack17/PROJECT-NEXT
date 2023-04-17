@@ -6,10 +6,15 @@ interface IPresentation {
 
 export const Presentation: FC<IPresentation> = ({ name }) => {
   //name es category id
-  const separador = name?.split(' '); //['Marcas','y', 'Eventos]
+  const separador = name?.split(' ');
+  console.log(separador);
+  //['Marcas','y', 'Eventos]
+
   return (
     <div>
-      <div className="min-h-[320px] flex justify-center flex-col bg-[url('/mock-category.png')] bg-cover bg-center app-banner -mt-4 gap-5 md:pl-[10rem]">
+      <div
+        className={`min-h-[320px] flex justify-center flex-col bg-[url('/${separador[0]}.png')] bg-cover bg-center app-banner -mt-4 gap-5 md:pl-[10rem]`}
+      >
         <div className="p-5">
           <p className="text-white text-lg mb-5 font-medium">
             Home / {separador[0]}

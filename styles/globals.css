@@ -67,3 +67,17 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#29b519",GradientType=1);
   }
 }
+
+.fondo {
+  background: linear-gradient(
+      90deg,
+      #000000 -7.73%,
+      rgba(0, 0, 0, 0.59) 37.54%,
+      rgba(0, 0, 0, 0) 98.92%,
+      rgba(0, 0, 0, 0) 98.92%
+    ),
+    url('/Bogota.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
