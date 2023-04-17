@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import SearchIcon from '../../components/assets/svg/SearchIcon';
 import { Layout } from '../../components/layout/Layout';
@@ -18,7 +17,6 @@ export const CategoryPage: NextPageWithLayout = () => {
   const { data: categoryResponse } = useCategories();
   const categories = categoryResponse?.results;
   console.log(categories);
-  const [categoryId, setCategoryId] = useState('');
   const { data: publicationResponse } = usePublications({
     categoryId: `${category_id}`,
   });

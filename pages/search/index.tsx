@@ -13,9 +13,9 @@ const SearchPage: NextPageWithLayout = () => {
   });
   const publicationByType = publicationResponse?.results;
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
-  const handleOptionClick = (option: any) => {
+  const handleOptionClick = (option: string) => {
     setSelectedOption(option === selectedOption ? null : option);
   };
   return (

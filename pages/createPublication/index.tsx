@@ -44,6 +44,7 @@ const Index = () => {
         swal('Good job!', 'You clicked the button!', 'success');
         console.log(res.data);
         setPubliId(res.data.results.id);
+        console.log(publiId);
         // console.log(res.data.results.id);
         functionBtnNext();
       })
