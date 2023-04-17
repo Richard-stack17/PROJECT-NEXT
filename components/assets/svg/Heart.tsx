@@ -1,10 +1,4 @@
-import { FC } from 'react';
-
-interface IHeart extends React.ComponentPropsWithoutRef<'svg'> {
-  isActive: boolean;
-}
-
-export const Heart: FC<IHeart> = ({ isActive = false, ...svgProps }) => {
+export const Heart = ({ ...svgProps }) => {
   return (
     <svg
       width="49"
@@ -20,7 +14,7 @@ export const Heart: FC<IHeart> = ({ isActive = false, ...svgProps }) => {
         cy="24.5"
         r="23.5"
         className="transition-all duration-500"
-        fill={isActive ? '#FF64BC' : '#D9D9D9'}
+        fill={'#D9D9D9'}
         stroke="white"
         strokeWidth="2"
       />

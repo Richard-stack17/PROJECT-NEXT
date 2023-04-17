@@ -36,6 +36,8 @@ export interface PublicationPost {
   reference_link: string;
   images: Image[];
   votes_count: number;
+  isVoted: boolean;
+  same_vote: any[];
 }
 /*this was created by me */
 export interface PublicationForm {

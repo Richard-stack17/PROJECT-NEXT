@@ -5,7 +5,10 @@ import swal from 'sweetalert';
 import Logo from '../../components/assets/logo/Logo';
 import Plus from '../../components/assets/svg/Plus';
 import { useCategories } from '../../lib/services/categories.services';
-import { createPublications } from '../../lib/services/publications.services';
+import {
+  createPublications,
+  postPublicationsImage,
+} from '../../lib/services/publications.services';
 import { useTags } from '../../lib/services/tags.services';
 
 const Index = () => {
@@ -41,7 +44,7 @@ const Index = () => {
     console.log(data);
     createPublications(data)
       .then((res) => {
-        swal('Good job!', 'You clicked the button!', 'success');
+        swal('¡Buen trabajo!', '¡Publicación creada!', 'success');
         console.log(res.data);
         setPubliId(res.data.results.id);
         console.log(publiId);
@@ -49,7 +52,11 @@ const Index = () => {
         functionBtnNext();
       })
       .catch((err) => {
-        swal('Fail!', 'You clicked the button!', 'warning');
+        swal(
+          '¡Ocurrió un error!',
+          'Fijate si los datos son válidos',
+          'warning'
+        );
         console.log(err);
         reset();
       });
@@ -76,7 +83,47 @@ const Index = () => {
   };
 
   /*IMAGEN */
+  interface IDataImg {
+    img0: FileList;
+    img1: FileList;
+    img2: FileList;
+  }
 
+  const { register: register2, handleSubmit: handleSubmit2 } =
+    useForm<IDataImg>();
+  const onSubmit2 = handleSubmit2((data: IDataImg) => {
+    const dataImg: IDataImg = {
+      img0: data.img0,
+      img1: data.img1,
+      img2: data.img2,
+    };
+    OnAddImage(dataImg);
+  });
+  const OnAddImage = (dataImg: IDataImg) => {
+    const formData = new FormData();
+    formData.append('images', dataImg.img0[0]);
+    formData.append('images', dataImg.img1[0]);
+    formData.append('images', dataImg.img2[0]);
+
+    postPublicationsImage(publiId, formData)
+      .then((res) => {
+        console.log(res.data),
+          router.push('/'),
+          swal(
+            '¡Buen trabajo!',
+            '¡Imagenes agregadas a la publicación!',
+            'success'
+          );
+      })
+      .catch((err) => {
+        console.log(err),
+          swal(
+            '¡Ocurrió un error!',
+            'Algo salió mal inténtalo nuevamente',
+            'warning'
+          );
+      });
+  };
   return (
     <div>
       <div className="flex flex-col min-[1028px]:flex-row w-full min-h-[100vh] overflow-hidden">
@@ -193,20 +240,38 @@ const Index = () => {
                 </button>
               </div>
             </form>
-            <form className={`min-[1028px]:pl-20 w-full ${display2}`}>
+            <form
+              className={`min-[1028px]:pl-20 w-full ${display2}`}
+              onSubmit={onSubmit2}
+            >
               <h1 className="title-2 pb-2">Fotos</h1>
               <p className="subtitle-2 text-app-grayDark mb-10">
                 Selecciona máximo tres fotos para crear una galería
               </p>
 
               <div className="flex flex-wrap lg:grid-cols-3 gap-4 justify-center items-center  py-7 border-[1px] border-app-gray rounded-2xl">
-                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                <div>
+                  <input
+                    type="file"
+                    className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl "
+                    {...register2('img0')}
+                  ></input>
                   <Plus />
                 </div>
-                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                <div>
+                  <input
+                    type="file"
+                    className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl "
+                    {...register2('img1')}
+                  ></input>
                   <Plus />
                 </div>
-                <div className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl ">
+                <div>
+                  <input
+                    type="file"
+                    className="flex items-center justify-center w-[150px] h-[150px] xs:w-[200px] xs:h-[226px] bg-app-grayLight rounded-2xl "
+                    {...register2('img2')}
+                  ></input>
                   <Plus />
                 </div>
               </div>

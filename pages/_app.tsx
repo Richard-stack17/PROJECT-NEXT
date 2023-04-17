@@ -6,7 +6,7 @@ import { NextPageWithLayout } from './page';
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
-
+//crear contexto, encerrar a la aplicación, isLogin luego cerrar sesión y cambiarlo a false
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
 
