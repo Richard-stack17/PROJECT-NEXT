@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useState } from 'react';
 import Likes from '../components/Likes/Likes';
 import { Search } from '../components/Presentation/Search';
 import Logo from '../components/assets/logo/Logo';
@@ -10,17 +9,6 @@ import { usePublications } from '../lib/services/publications.services';
 import { NextPageWithLayout } from './page';
 
 const Home: NextPageWithLayout = () => {
-  const [categoryId, setCategoryId] = useState('');
-
-  const {
-    data: publicationResponse,
-    error,
-    isLoading,
-  } = usePublications({ categoryId: `${categoryId}` });
-
-  console.log({ publicationResponse, error, isLoading });
-  const publications = publicationResponse?.results;
-
   const { data: publicationResponseAll } = usePublications({});
 
   console.log({ publicationResponseAll });
@@ -43,11 +31,7 @@ const Home: NextPageWithLayout = () => {
           <div className="flex items-center justify-center gap-2 pb-5 mb-[4.5rem] mx-3">
             {categories &&
               categories.map((category) => (
-                <Link
-                  href={`/category/${category.id}`}
-                  key={category.id}
-                  onClick={() => setCategoryId(category.id)}
-                >
+                <Link href={`/category/${category.id}`} key={category.id}>
                   <button className="border-app-grayLight border-2 text-app-gray py-[7.5px] px-[1rem] rounded-3xl bg-white texto-1">
                     {category.name}
                   </button>
@@ -59,14 +43,11 @@ const Home: NextPageWithLayout = () => {
 
       {/* CONTENIDO */}
       <div className="flex flex-col gap-6">
-        <div className="bg-app-grayLighter p-5 my-12">
-          <Likes />
-        </div>
-        <div className="mb-[114px]">
+        <div className="my-[114px]">
           <EventSlider
             title="Populares en Querétaro"
             subtitle="Lo que las personas piden más"
-            events={publications}
+            events={publicationsAll}
           />
         </div>
         <div className="mb-[114px]">
@@ -75,6 +56,9 @@ const Home: NextPageWithLayout = () => {
             subtitle="Publicaciones que podrías colaborar"
             events={publicationsAll}
           />
+        </div>
+        <div className="bg-app-grayLighter p-5">
+          <Likes />
         </div>
         <div className="mb-[114px]">
           <EventSlider

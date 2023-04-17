@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
 import { PublicationPost } from '../../../lib/interfaces/publications.interface';
 import {
   usePublications,
@@ -16,17 +15,17 @@ const Cart = ({
   votes_count,
   images,
   id,
-}: PublicationPost) => {
-  const [like, setLike] = useState(false);
+}: // isVoted,
+PublicationPost) => {
   const { mutate: mutatePublications } = usePublications();
+
   const handleClick = () => {
-    setLike(!like);
-    if (like === false) {
-      votePublications(id);
-      mutatePublications();
-    }
     console.log(id);
 
+    votePublications(id);
+    mutatePublications();
+
+    console.log(id);
     console.log(votes_count);
   };
   return (
@@ -42,7 +41,7 @@ const Cart = ({
 
         <Heart
           className="absolute right-2 top-[85%] w-10 sm:w-[47px] cursor-pointer"
-          isActive={like}
+          // isActive={isVoted}
           onClick={handleClick}
         />
       </div>

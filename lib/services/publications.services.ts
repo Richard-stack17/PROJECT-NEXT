@@ -1,7 +1,6 @@
 import useSWR from 'swr';
 import axios from '../helpers/axios.helper.'; //usamos el axios personalizado, para hacer esas configuraciones
 import {
-  ImagesUpload,
   PublicationForm,
   PublicationResponse,
 } from '../interfaces/publications.interface';
@@ -29,8 +28,22 @@ function votePublications(publicationID: string) {
   return axios.post(`/publications/${publicationID}/vote`);
 }
 
-function addImage(publicationID: string, data: ImagesUpload) {
-  return axios.post(`/publications/${publicationID}/add-image`, data);
+function postPublicationsImage(idPublication: string, fromData: object) {
+  const options = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+  return axios.post(
+    `https://paracuando-academlo-api.academlo.tech/api/v1/publications/${idPublication}/add-image`,
+    fromData,
+    options
+  );
 }
 
-export { usePublications, createPublications, votePublications, addImage };
+export {
+  usePublications,
+  createPublications,
+  votePublications,
+  postPublicationsImage,
+};
