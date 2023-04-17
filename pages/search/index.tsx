@@ -20,7 +20,7 @@ const SearchPage: NextPageWithLayout = () => {
   };
   return (
     <div>
-      <div className="min-h-[108px] flex flex-row items-end bg-[url('/searchFondo.png')] bg-cover bg-center app-banner -mt-4 gap-5 p-5 md:pl-[10rem]">
+      <div className="min-h-[108px] flex flex-row items-end bg-[url('/search-fondo.png')]  bg-cover bg-center app-banner -mt-4 gap-5 p-5 md:pl-[10rem]">
         <div>
           <p className="text-white text-lg mb-5 font-medium">Home / Búsqueda</p>
         </div>
